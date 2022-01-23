@@ -157,9 +157,7 @@ MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compressio
     else if((!IMG_Init(IMG_INIT_PNG)) & IMG_INIT_JPG){
         throw std::runtime_error(IMG_GetError());
     }
-    else if((!TTF_Init())){
-        throw std::runtime_error(TTF_GetError());
-    }
+
 }
 
 MediaManager::~MediaManager(){

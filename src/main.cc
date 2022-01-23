@@ -1,5 +1,6 @@
 #include <WindowManager.hh>
 #include <MediaManager.hh>
+#include <SDL2/SDL_ttf.h>
 #include <GameObject.hh>
 #include <Util.hh>
 #include <math.h>
@@ -23,6 +24,9 @@ int main(int argc,char* argv[]){
     else;
     WindowManager wManager("Hello World",SCREEN_WIDTH,SCREEN_HEIGHT,SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,SDL_WINDOW_SHOWN);
     MediaManager mManager(wManager.WINDOW,"assets",COMPRESSION_LEVEL);
+    if((!TTF_Init())){
+        throw std::runtime_error(TTF_GetError());
+    }
     SDL_Event event;
     int alive = 1;
     SDL_SetRenderDrawColor( mManager.RENDERER, 0xFF, 0xFF, 0xFF, 0xFF );
