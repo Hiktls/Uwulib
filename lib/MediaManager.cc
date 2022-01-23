@@ -1,5 +1,5 @@
 #include <MediaManager.hh>
-
+#include <SDL2/SDL_ttf.h>
 
 
 
@@ -94,7 +94,11 @@ void MediaManager::BlitSurface(SDL_Surface* MainSurface,SDL_Surface* TargetSurfa
 MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compression){
     char buffer[2048];
     compression = compression;
+    #ifdef _WIN32 || _WIN64
     _getcwd(buffer,2048);
+    #else
+    getcwd(buffer,2048);
+    #endif
     RUNPATH.append(buffer);
     string assetsPath = RUNPATH+"\\"+assetsFolder;
     
@@ -148,10 +152,13 @@ MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compressio
     RENDERER = SDL_CreateRenderer( WINDOW, -1, SDL_RENDERER_ACCELERATED );
     if( RENDERER == NULL )
     {
-        printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+        throw std::runtime_error(SDL_GetError());
     }
-    if((!IMG_Init(IMG_INIT_PNG)) & IMG_INIT_JPG){
-        printf("Failed to init SDL_Image with IMG_INIT_JPG flag. IMG_GetError(): %s\n",IMG_GetError());
+    else if((!IMG_Init(IMG_INIT_PNG)) & IMG_INIT_JPG){
+        throw std::runtime_error(IMG_GetError());
+    }
+    else if((!TTF_Init())){
+        throw std::runtime_error(TTF_GetError());
     }
 }
 
