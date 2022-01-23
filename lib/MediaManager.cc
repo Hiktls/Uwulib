@@ -95,9 +95,9 @@ MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compressio
     char buffer[2048];
     compression = compression;
     #if defined(_WIN32) || defined(_WIN64)
-    getcwd(buffer,2048);
-    #else
     _getcwd(buffer,2048);
+    #else
+    getcwd(buffer,2048);
     #endif
     RUNPATH.append(buffer);
     string assetsPath = RUNPATH+"\\"+assetsFolder;
