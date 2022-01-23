@@ -100,7 +100,7 @@ MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compressio
     
     if(compression == 1){
         compressionLevel = 1;
-        Util util;
+        Util util("","",compressionLevel);
         string TMP = getenv("TMP");
         ASSETSNAME = assetsFolder;
         if(!fs::exists(TMP+"\\uwuengine")){

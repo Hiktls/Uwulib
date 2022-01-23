@@ -1,4 +1,5 @@
-#include <Util.hh>
+#include "Util.hh"
+
 
 unsigned long file_size(const char *filename)
 {
@@ -7,6 +8,11 @@ unsigned long file_size(const char *filename)
     unsigned long size = ftell(pFile);
     fclose (pFile);
     return size;
+}
+Util::Util(string tmp,string run,int compressionLevel){
+    TMPPATH = tmp;
+    RUNPATH = run;
+    compression = compressionLevel;
 }
 
 int Util::Compress(string source, string dest){
@@ -43,10 +49,39 @@ int Util::Decompress(string source, string dest){
     gzclose(infile);
     return 0;
 }
+SDL_Texture* Util::LoadTEX(string relativePath,SDL_Renderer* &Renderer){
+    string path;
+    if(compression == 1){
+        path = TMPPATH+"\\"+relativePath;
+    }
+    else {
+        path = RUNPATH + "\\" + relativePath;
+    }
+    SDL_Texture* texture = NULL;
+    printf("%saaa\n",path.c_str());
 
+    SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
+    if( loadedSurface == NULL )
+    {
+        printf("Failed to load file.\n");
+        throw std::runtime_error(SDL_GetError());
+    }
+    else
+    {
+        texture = SDL_CreateTextureFromSurface( Renderer, loadedSurface );
+        if(texture == NULL )
+        {
+            printf("Failed to load file.\n");
+            throw std::runtime_error(SDL_GetError());
+        }
+        SDL_FreeSurface( loadedSurface );
+    }
+
+    return texture;
+}
 void Util::Packager(string path){
     SHA256 sha;
-    Util util;
+    Util util(TMPPATH,RUNPATH,compression);
     std::ofstream hashfile(path+"\\hash.sha256");
     for(const auto &entry : std::filesystem::directory_iterator(path)){
         size_t filenameLastSep = entry.path().string().find_last_of("\\");

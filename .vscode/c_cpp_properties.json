@@ -5,14 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C://Users//kaano//AppData//Local//Programs//Python//Python310//include",
-                "C:/msys64/mingw64/include",
-                "C:/msys64/mingw64/include/glibmm-2.4",
-                "C:/msys64/mingw64/lib/glib-2.0/include",
-                "C:/msys64/mingw64/include/pango-1.0",
-                "C:/msys64/mingw64/include/harfbuzz",
-                "C:/msys64/mingw64/include/cairo",
-                "C:/msys64/mingw64/include/gdk-pixbuf-2.0",
-                "C:/msys64/mingw64/include/atk-1.0"
+                "C:/msys64/mingw64/include"
             ],
             "defines": [
                 "_DEBUG",
