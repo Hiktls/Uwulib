@@ -94,10 +94,10 @@ void MediaManager::BlitSurface(SDL_Surface* MainSurface,SDL_Surface* TargetSurfa
 MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compression){
     char buffer[2048];
     compression = compression;
-    #ifdef _WIN32 || _WIN64
-    _getcwd(buffer,2048);
-    #else
+    #if defined(_WIN32) || defined(_WIN64)
     getcwd(buffer,2048);
+    #else
+    _getcwd(buffer,2048);
     #endif
     RUNPATH.append(buffer);
     string assetsPath = RUNPATH+"\\"+assetsFolder;
