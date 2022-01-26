@@ -1,9 +1,9 @@
 #ifndef OBJECT_HH
 #define OBJECT_HH
 
-#include <MediaManager.hh>
-#include <Texture.hh>
-#include <Util.hh>
+#include "MediaManager.hh"
+#include "Texture.hh"
+#include "Util.hh"
 class GameObject {
 
     public:

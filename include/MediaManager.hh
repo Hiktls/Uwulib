@@ -1,15 +1,16 @@
 #ifndef MEDIA_HH
 #define MEDIA_HH
 
-#include <Util.hh>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
-#include <filesystem>
 #include <fstream>
 #include <vector>
-#include <string>
+#include <filesystem>
 #include <unistd.h>
+#include <string>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include "Util.hh"
 
 using std::string;
 namespace fs = std::filesystem;

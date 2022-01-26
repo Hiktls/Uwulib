@@ -1,4 +1,4 @@
-#include <Texture.hh>
+#include "Texture.hh"
 
 Texture::Texture(const int width,const int height,MediaManager &medMang,const string path) : util(medMang.TMPPATH,medMang.RUNPATH,medMang.GetCompressionLevel()){
     TMPPATH = medMang.TMPPATH;
@@ -9,20 +9,21 @@ Texture::Texture(const int width,const int height,MediaManager &medMang,const st
     else {
         LibTexture = util.LoadTEX(path,medMang.RENDERER);
     }
+    Renderer = medMang.RENDERER;
     TexProps.h = height;
     TexProps.w = width;
     TexProps.x = 0;
     TexProps.y = 0;
 }
 
-void Texture::Open(const string path,const int width,const int height,SDL_Renderer* &Renderer){
+void Texture::Open(const string path,const int width,const int height){
     FreeTex();
     TexProps.w = width;
     TexProps.h = height;
     LibTexture = util.LoadTEX(path,Renderer);
 }
 
-void Texture::Render(const int x,const int y,SDL_Renderer* &Renderer){
+void Texture::Render(const int x,const int y){
     if(LibTexture != NULL){
         TexProps.x = x;
         TexProps.y = y;

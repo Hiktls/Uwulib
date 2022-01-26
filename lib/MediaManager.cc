@@ -1,5 +1,4 @@
-#include <MediaManager.hh>
-#include <SDL2/SDL_ttf.h>
+#include "MediaManager.hh"
 
 
 
@@ -156,6 +155,8 @@ MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compressio
     }
     else if((!IMG_Init(IMG_INIT_PNG)) & IMG_INIT_JPG){
         throw std::runtime_error(IMG_GetError());
+    }else if(TTF_Init() == -1){
+        throw std::runtime_error(TTF_GetError());
     }
 
 }
@@ -163,6 +164,7 @@ MediaManager::MediaManager(SDL_Window* WINDOW,string assetsFolder,int compressio
 MediaManager::~MediaManager(){
     printf("%s",TMPPATH.c_str());
     IMG_Quit();
+    TTF_Quit();
     SDL_DestroyRenderer(RENDERER);
     if(compressionLevel == 1){
     }

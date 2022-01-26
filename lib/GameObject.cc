@@ -1,4 +1,4 @@
-#include <GameObject.hh>
+#include "GameObject.hh"
 
 GameObject::GameObject(int objWidth,int objHeight,int x,int y,MediaManager &medMang) : ObjectTexture(objWidth,objHeight,medMang) {
     width = objWidth;

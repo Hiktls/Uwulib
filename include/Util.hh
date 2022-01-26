@@ -6,9 +6,9 @@
 #include <string>
 #include <zlib.h>
 #include <assert.h>
-#include <sha256.hh>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "sha256.hh"
 using std::string;
 
 namespace fs = std::filesystem;
